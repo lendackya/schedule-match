@@ -1,7 +1,11 @@
 require 'rails_helper'
 
 RSpec.feature "A person can register", type: :feature do
-  scenario "A person registers them self as a user" do
+
+let(:user) { FactoryGirl.create(:user) }
+
+  scenario "A person registers themself as a user" do
+    
       visit new_user_path
       fill_in "Username", with: "test_user"
       fill_in "Password", with: "test_pass"
