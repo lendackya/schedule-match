@@ -20,5 +20,14 @@
   <%= @user.email %>
 </p>
 
+<p>
+  <strong>Courses:</strong>
+  <% @user.courses.each do |course| %>
+    <ul>
+      <li><%= course.name %> </li>
+    </ul>
+  <% end %>
+</p>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
