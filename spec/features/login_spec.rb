@@ -17,6 +17,36 @@ RSpec.feature "A person can login", type: :feature do
     expect(current_path).to eq user_path(user)
   end
 
-  scenario "A person inputs a bad login" do
+  scenario "A person inputs a bad password" do
+    visit new_session_path
+    fill_in "username", with: user.username
+    fill_in "password", with: "not_correct_password"
+    click_button "Login"
+    expect(current_path).to eq current_path
   end
+
+  scenario "A person inputs a bad username" do
+    visit new_session_path
+    fill_in "username", with: "not_correct_username"
+    fill_in "password", with: user.password
+    click_button "Login"
+    expect(current_path).to eq current_path
+  end
+
+  scenario "A person inputs an empty username" do
+    visit new_session_path
+    fill_in "username", with: ""
+    fill_in "password", with: user.password
+    click_button "Login"
+    expect(current_path).to eq current_path
+  end
+
+  scenario "A person inputs an empty password" do
+    visit new_session_path
+    fill_in "username", with: user.username
+    fill_in "password", with: ""
+    click_button "Login"
+    expect(current_path).to eq current_path
+  end
+
 end
